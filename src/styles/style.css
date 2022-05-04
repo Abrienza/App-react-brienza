@@ -1,3 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Lato:wght@300&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 2rem;
+}
+
+html{
+	font-size: 62.5%;
+}
+
+.logo {
+    color: white;
+    font-size: 5rem;
+    text-transform: uppercase;
+}
+
+div ul li{
+    list-style: none;
+    margin-right: 6rem;
+}
+
+    div ul li a{
+        color: white;
+        text-decoration: none;
+        font-size: 2rem;
+        text-transform: uppercase;
+    }	
+
+    div ul li a:hover{
+        color: grey;
+    }
+
+header {
+    background-color:brown;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem 2rem
+}
+
 h1 {
-    color: blue;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    font-size: 4rem;
+	color:brown;
+	position: relative;
+	top: 200px;
+}
+
+.App {
+
 }

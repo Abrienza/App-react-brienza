@@ -1,8 +1,11 @@
+import Navbar from "./components/Navbar/Navbar"
+
 function App() {
   return (
-    <div>
+    <div className="App">
+      <Navbar/>
         <h1>
-          Desafío uno
+          Desafío N° 2
         </h1>
     </div>
   );
