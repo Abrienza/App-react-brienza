@@ -1,4 +1,7 @@
-export default function Navbar() {
+import {Navbar, Container, Nav, NavDropdown, Offcanvas, Form, FormControl, Button} from "react-bootstrap"
+import Cartwidget from "../Cartiwidget/Cartwidget";
+
+export default function NavbarAye() {
     
     const headerStyle = {
         display: "flex",
@@ -9,20 +12,73 @@ export default function Navbar() {
         padding: "1rem",
     };
 
+    const esteClick = () => {
+        alert("Bien hecho")
+    }
+
+    const Button = ({ texto }) => {
+        return (
+            <input type="button" value={texto} onClick={esteClick}/>
+        )
+    }
+
+
     return (
-              
-        <header>
+        <>
+        <header className= "header">  
+        <div>
+            <Button texto="Ir al Carrito"/>
+            <Cartwidget counter={55}/>
+        </div>  
+            {[false].map((expand) => (
+        <Navbar key={expand} bg="light" expand={expand} className="mb-3">
+        <Container fluid>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            <Navbar.Offcanvas
+            id={`offcanvasNavbar-expand-${expand}`}
+            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+            placement="end"
+            >
+            <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                DODONEA
+                </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Nav.Link href="#action1">Inicio</Nav.Link>
+                <Nav.Link href="#action2">Conoce mas</Nav.Link>
+                <NavDropdown
+                    title="Productos"
+                    id={`offcanvasNavbarDropdown-expand-${expand}`}
+                >
+                    <NavDropdown.Item href="#action3">Mas Vendidos</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">
+                    Ofertas
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action5">
+                    Contactanos
+                    </NavDropdown.Item>
+                </NavDropdown>
+                </Nav>
+            </Offcanvas.Body>
+            </Navbar.Offcanvas>
+        </Container>
+        </Navbar>
+    ))}
             <div className= "logo">
-                Logo
+                DODONEA
             </div>
             <div>
                 <ul style={ headerStyle }>
                     <li><a href="">Inicio</a></li>
+                    <li><a href="">Conoce mas</a></li>
                     <li><a href="">Productos</a></li>
-                    <li><a href="">Sobre nosotros</a></li>
-                    <li><a href="">Contacto</a></li>
+                    <li><a href="">Contactanos</a></li>
                 </ul>
             </div>
         </header>
+        </>
     );
 };

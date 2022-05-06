@@ -1,11 +1,11 @@
-import Navbar from "./components/Navbar/Navbar"
+import NavbarAye from "./components/Navbar/Navbar"
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      <NavbarAye/>
         <h1>
-          Desafío N° 2
+          Desafío N° 3
         </h1>
     </div>
   );
