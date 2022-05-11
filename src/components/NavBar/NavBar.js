@@ -1,8 +1,8 @@
 import React from "react";
 import {Navbar, Container, Nav, NavDropdown, Offcanvas} from "react-bootstrap"
-import Cartwidget from "../Cartiwidget/Cartwidget";
+import CartWidget from "../CartiWidget/CartWidget";
 
-export default function NavbarAye() {
+export default function NavBarAye() {
 
 
     const headerStyle = {
@@ -78,7 +78,7 @@ export default function NavbarAye() {
             </div>
             <div>
                 <Button texto="Ir al Carrito"/>
-                <Cartwidget counter={55}/>
+                <CartWidget counter={55}/>
             </div> 
         </header>
         </>
