@@ -1,8 +1,10 @@
-import {Navbar, Container, Nav, NavDropdown, Offcanvas, Form, FormControl, Button} from "react-bootstrap"
+import React from "react";
+import {Navbar, Container, Nav, NavDropdown, Offcanvas} from "react-bootstrap"
 import Cartwidget from "../Cartiwidget/Cartwidget";
 
 export default function NavbarAye() {
-    
+
+
     const headerStyle = {
         display: "flex",
         flexWrap: "wrap",
@@ -25,11 +27,7 @@ export default function NavbarAye() {
 
     return (
         <>
-        <header className= "header">  
-        <div>
-            <Button texto="Ir al Carrito"/>
-            <Cartwidget counter={55}/>
-        </div>  
+        <header className= "header">
             {[false].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3">
         <Container fluid>
@@ -67,17 +65,21 @@ export default function NavbarAye() {
         </Container>
         </Navbar>
     ))}
+            <div>
+                <ul style={ headerStyle }>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Conoce mas</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Contactanos</a></li>
+                </ul>
+            </div>
             <div className= "logo">
                 DODONEA
             </div>
             <div>
-                <ul style={ headerStyle }>
-                    <li><a href="">Inicio</a></li>
-                    <li><a href="">Conoce mas</a></li>
-                    <li><a href="">Productos</a></li>
-                    <li><a href="">Contactanos</a></li>
-                </ul>
-            </div>
+                <Button texto="Ir al Carrito"/>
+                <Cartwidget counter={55}/>
+            </div> 
         </header>
         </>
     );
