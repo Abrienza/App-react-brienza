@@ -24,16 +24,11 @@ export default function ItemCount(args) {
 
     return (
         <div className= "contenedorContador">
-            <h2>
-            CONTADOR
-            </h2>
             <div>
-                <div className="numero">
-                    {count}
-                </div>
                 <div>
-                    <input type="button" value="Quitar" onClick={handleResto} />
-                    <input type="button" value="Sumar" onClick={handleSumo} />                    
+                    <input type="button" value="-" onClick={handleResto} />
+                    {count}
+                    <input type="button" value="+" onClick={handleSumo} />                    
                 </div>
             </div>
             <div className="agregar">
