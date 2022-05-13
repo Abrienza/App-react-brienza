@@ -24,12 +24,12 @@ export default function ItemListContainer({mensaje}) {
 
     return (
         <Container className="itemlist-container">
-            <div className="header">
-                {mensaje}
-            </div>
-            <div className="body">
-                <ItemList products={products} />
-            </div>            
+            <main className="main">
+                <div className="title">
+                    {mensaje}
+                </div>
+                <ItemList products={products}/>
+            </main>            
         </Container>
 
     )}    

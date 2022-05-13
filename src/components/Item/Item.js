@@ -5,9 +5,7 @@ import ItemCount from "../ItemCount/ItemCount"
 export default function Item ({product}) {
     return (
         <Container>
-            <Row>
-                <Col>
-                    <Card style={{ width: '18rem', border: "2px solid #000" }}>
+                    <Card className="item" style={{ width: '18rem', border: "2px solid #000" }}>
                     <Card.Img variant="top" src={product.image}/>
                     <Card.Body>
                         <Card.Title>{product.title}</Card.Title>
@@ -27,8 +25,6 @@ export default function Item ({product}) {
 
                     </Card.Body>
                     </Card>
-                </Col>
-            </Row>
         </Container>
     )
 }
