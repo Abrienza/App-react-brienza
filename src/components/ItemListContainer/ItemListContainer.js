@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Container, Row, Col} from "react-bootstrap"
 import ItemList from "../ItemList/ItemList"
 
@@ -9,18 +9,26 @@ export default function ItemListContainer({mensaje}) {
     const [products, setProducts] = React.useState([]);
 
     const task = new Promise ((resolve, rejected) => {
+        let condition = true
         setTimeout(() => {
-            resolve(products_json);
+            if(condition){
+                resolve(products_json);
+            }else{
+                rejected('Salió mal')
+            }
         }, 2000)
     })
-      
-    task.then((result) => {
+    
+    React.useEffect(()=>{
+    task
+        .then((result) => {
         setProducts(result);
-    }, err => {
-        console.log(err)
-    }).catch((err) =>{
-        console.log(err)
+        console.log('respuesta', result)
     })
+        .catch((err) =>{
+        console.log('respuesta', err)
+    })
+    },[])
 
     return (
         <Container className="itemlist-container">
