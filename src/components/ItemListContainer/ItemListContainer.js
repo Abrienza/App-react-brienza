@@ -8,6 +8,8 @@ export default function ItemListContainer({mensaje}) {
 
     const [products, setProducts] = React.useState([]);
 
+    const [charge, setcharge] = useState(false)
+
     const task = new Promise ((resolve, rejected) => {
         let condition = true
         setTimeout(() => {
@@ -20,6 +22,7 @@ export default function ItemListContainer({mensaje}) {
     })
     
     React.useEffect(()=>{
+    setcharge(true)
     task
         .then((result) => {
         setProducts(result);
@@ -28,7 +31,11 @@ export default function ItemListContainer({mensaje}) {
         .catch((err) =>{
         console.log('respuesta', err)
     })
+
+        .finally((chau) => setcharge(false))
+
     },[])
+
 
     return (
         <Container className="itemlist-container">
@@ -36,7 +43,8 @@ export default function ItemListContainer({mensaje}) {
                 <div className="title">
                     {mensaje}
                 </div>
-                <ItemList products={products}/>
+                {charge ? <p>Cargando... </p> : <ItemList products={products}/>}
+                
             </main>            
         </Container>
 
