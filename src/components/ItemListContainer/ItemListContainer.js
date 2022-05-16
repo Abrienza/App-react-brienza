@@ -1,25 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {Container, Row, Col} from "react-bootstrap"
-import ItemList from "../ItemList/ItemList"
-
-import {products_json} from "../../data/productos"
+import {Container, Row, Col} from "react-bootstrap";
+import ItemList from "../ItemList/ItemList";
+import { task } from "../../mocks/FakeApi";
 
 export default function ItemListContainer({mensaje}) {
 
     const [products, setProducts] = React.useState([]);
 
     const [charge, setcharge] = useState(false)
-
-    const task = new Promise ((resolve, rejected) => {
-        let condition = true
-        setTimeout(() => {
-            if(condition){
-                resolve(products_json);
-            }else{
-                rejected('Salió mal')
-            }
-        }, 2000)
-    })
     
     React.useEffect(()=>{
     setcharge(true)
