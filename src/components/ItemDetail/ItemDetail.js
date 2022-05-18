@@ -2,7 +2,7 @@ import React from "react"
 import {Card, Button, Container} from "react-bootstrap"
 import ItemCount from "../ItemCount/ItemCount"
 
-export default function Item ({product}) {
+export default function ItemDetail ({product}) {
     return (
         <div>
             <Card className="item" style={{ width: '18rem', border: "2px solid #000", margin: "1rem" }}>
@@ -10,7 +10,7 @@ export default function Item ({product}) {
             <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>
-                    Stock: {product.stock}    
+                    Stock: {product.stock}
                 </Card.Text>
                 <Card.Text>
                     Precio: {product.price}
