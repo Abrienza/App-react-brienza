@@ -3,9 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { task2 } from "../../mocks/FakeApi";
 
-// import axios from "axios"
-
-export default function ItemDetailContainer() {
+export default function ItemDetailContainer({productId}) {
 
     const [product, setProduct] = React.useState({})
 
@@ -14,13 +12,9 @@ export default function ItemDetailContainer() {
     React.useEffect(() => {
         setcharge(true)
 
-        // TODO: Solucionar problema de CORS
-        // axios.get("https://apimocha.com/item-detail-list/items").then((res) => {
-        //     console.log(res.data.results);
-        //     // setItemDetail(res.data.results[3])
-        // })
+        // console.log(`El producto es: ${productId}`);
 
-        task2
+        task2(productId)
             .then((result) => {
                 setProduct(result);
             })

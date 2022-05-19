@@ -1,6 +1,7 @@
 import React from "react";
 import {Navbar, Container, Nav, NavDropdown, Offcanvas} from "react-bootstrap"
 import CartWidget from "../CartiWidget/CartWidget";
+import { Link } from "react-router-dom"
 
 export default function NavBarAye() {
 
@@ -30,7 +31,10 @@ export default function NavBarAye() {
         <header className= "header">
             {[false].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3">
-        <Container fluid>
+        <Container>
+            <Navbar.Brand>
+                <Link to="/">Marca que lleva a Inicio</Link> 
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-${expand}`}
@@ -67,10 +71,8 @@ export default function NavBarAye() {
     ))}
             <div>
                 <ul style={ headerStyle }>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Conoce mas</a></li>
-                    <li><a href="#">Productos</a></li>
-                    <li><a href="#">Contactanos</a></li>
+                    <li><Link to="/">Inicio</Link></li>
+                    <li><Link to="/prods">Productos</Link></li>
                 </ul>
             </div>
             <div className= "logo">

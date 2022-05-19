@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom"
+
 export default function CartWidget({ counter }){
     return(
         <div>
-            <img src="img/list-star.png" alt="estructura de arbol"/>
+            <Link to="/cart"><img src="img/list-star.png" alt="estrella tipo Cart"/>
+            </Link>
             {counter}
         </div>
     )
