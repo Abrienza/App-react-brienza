@@ -15,7 +15,6 @@ export default function ItemDetail ({product}) {
                 <Card.Text>
                     Precio: {product.price}
                 </Card.Text>
-                <Button variant="primary">Más info</Button>
 
                 <ItemCount 
                     initial={1}

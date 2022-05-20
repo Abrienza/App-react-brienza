@@ -1,21 +1,20 @@
 import { products_json } from "../data/productos"
 
-export const task = new Promise ((resolve, rejected) => {
+export const getProductsByCategory = (categoryId) => {
+    return new Promise((resolve, rejected) => {
+        setTimeout(() => {
+            if (categoryId) {
+                resolve(products_json.filter( e => e.categoryId == categoryId));
+            } else {
+                resolve(products_json);
+            }
+        }, 2000)
+    })
+}
 
-    let condition = true
 
-    setTimeout(() => {
-        if(condition){
-            resolve(products_json);
-        }else{
-            rejected('Salió mal')
-        }
-    }, 2000)
-
-})
-
-export const task2 = (productId) => {
-    return new Promise ((resolve, rejected) => {
+export const getProductById = (productId) => {
+    return new Promise((resolve, rejected) => {
         setTimeout(() => {
             resolve(products_json[productId]);
         }, 2000)

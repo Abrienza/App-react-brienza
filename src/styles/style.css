@@ -12,6 +12,7 @@
     height: 100vh;
     padding-top: 10px;
     font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
 }
 
 html{
@@ -20,19 +21,17 @@ html{
 
 .logo {
     color: white;
-    font-size: 4rem;
-    text-transform: uppercase;
 }
 
 div ul li{
     list-style: none;
-    margin-right: 6rem;
+    margin-right: 8rem;
 }
 
     div ul li a{
         color: white;
         text-decoration: none;
-        font-size: 1,5rem;
+        font-size: 3rem;
         text-transform: uppercase;
     }	
 

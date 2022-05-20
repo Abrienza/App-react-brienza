@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React from "react";
+import { Container } from "react-bootstrap";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { task2 } from "../../mocks/FakeApi";
+import { getProductById } from "../../mocks/FakeApi";
 
 export default function ItemDetailContainer({productId}) {
 
@@ -12,9 +12,7 @@ export default function ItemDetailContainer({productId}) {
     React.useEffect(() => {
         setcharge(true)
 
-        // console.log(`El producto es: ${productId}`);
-
-        task2(productId)
+        getProductById(productId)
             .then((result) => {
                 setProduct(result);
             })

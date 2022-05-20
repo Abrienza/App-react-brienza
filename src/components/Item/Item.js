@@ -1,6 +1,6 @@
 import React from "react"
-import {Card, Button, Container} from "react-bootstrap"
-import ItemCount from "../ItemCount/ItemCount"
+import { Card } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 export default function Item ({product}) {
     return (
@@ -15,14 +15,7 @@ export default function Item ({product}) {
                 <Card.Text>
                     Precio: {product.price}
                 </Card.Text>
-                <Button variant="primary">Más info</Button>
-
-                <ItemCount 
-                    initial={1}
-                    stock={product.stock} 
-                    onAdd={ (count) => { console.log("Se agregegaron " + count + " unidades") } }
-                />
-
+                <Link to={`/item/${product.id}`}>Más info</Link>
             </Card.Body>
             </Card>
         </div>
