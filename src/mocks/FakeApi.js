@@ -14,8 +14,10 @@ export const task = new Promise ((resolve, rejected) => {
 
 })
 
-export const task2 = new Promise ((resolve, rejected) => {
-    setTimeout(() => {
-        resolve(products_json[0]);
-    }, 2000)
-})
+export const getProductById = (productId) => {
+    return new Promise((resolve, rejected) => {
+        setTimeout(() => {
+            resolve(products_json.find( e => e.id == productId ));
+        }, 2000)
+    })
+}
