@@ -16,7 +16,7 @@ export const getProductsByCategory = (categoryId) => {
 export const getProductById = (productId) => {
     return new Promise((resolve, rejected) => {
         setTimeout(() => {
-            resolve(products_json[productId]);
+            resolve(products_json.find( e => e.id == productId ));
         }, 2000)
     })
 }
