@@ -1,8 +1,14 @@
 import React from "react"
-import {Card, Button, Container} from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import ItemCount from "../ItemCount/ItemCount"
+import { Link } from "react-router-dom"
 
 export default function ItemDetail ({product}) {
+    
+    const [count, setCount] = React.useState(1);
+    const onAdd = (quantityToAdd) => setCount(count + quantityToAdd);
+    const addToCart = () => console.log("TODO: Agregar a carrito");
+
     return (
         <div>
             <Card className="item" style={{ width: '18rem', border: "2px solid #000", margin: "1rem" }}>
@@ -17,10 +23,15 @@ export default function ItemDetail ({product}) {
                 </Card.Text>
 
                 <ItemCount 
-                    initial={1}
+                    count={count}
                     stock={product.stock} 
-                    onAdd={ (count) => { console.log("Se agregegaron " + count + " unidades") } }
+                    onAdd={onAdd}
                 />
+
+                <div className="agregar">
+                    <input type="button" value="Agregar al Carrito" onClick={addToCart}/>
+                    <Link to={'/cart'}><input type="button" value="Finalizar Compra"/></Link>
+                </div>                
 
             </Card.Body>
             </Card>
