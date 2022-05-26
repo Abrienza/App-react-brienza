@@ -1,14 +1,17 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Card } from "react-bootstrap"
 import ItemCount from "../ItemCount/ItemCount"
 import { Link } from "react-router-dom"
+import { contexto } from "../CartContext/CartContext"
 
 export default function ItemDetail ({product}) {
     
+    const {cart, addProduct} = useContext(contexto);
+    
     const [goToCart, setGoToCart] = React.useState(false);
-    const [amountToBuy, setAmountToBuy] = React.useState(0);
+    
     const onAdd = (amount) => {
-        setAmountToBuy(amount);
+        addProduct({id: product.id, amount})
         setGoToCart(true);
     }
 
