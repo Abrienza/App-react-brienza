@@ -1,21 +1,38 @@
-export default function ItemCount({stock, count, onAdd}) {
+import React from "react";
+
+export default function ItemCount({initial, stock, onAdd}) {
+
+    const [count, setCount] = React.useState(initial);
 
     const handleResto = () => {
-        if (count > 1) {
-            onAdd(-1);
+        if(count > initial) {
+            setCount(count - 1);
         }
     }
     
     const handleSumo = () => {
         if (count < stock) {
-            onAdd(1);
+            setCount(count + 1);
         }
     }
     
+    const addToCart = () => {
+        if (stock > 0) {
+            onAdd(count);
+        }
+    }
+
     return (
         <div className= "contenedorContador">
-            <input type="button" value=" - " onClick={handleResto} />
-            <span> {count} </span>
-            <input type="button" value=" + " onClick={handleSumo} />                    
+            <div>
+                <div>
+                    <input type="button" value=" - " onClick={handleResto} />
+                    <span> {count} </span>
+                    <input type="button" value=" + " onClick={handleSumo} />                    
+                </div>
+            </div>
+            <div className="agregar">
+                <input type="button" value="Agregar al Carrito" onClick={addToCart}/>
+            </div>
         </div>
     )}      

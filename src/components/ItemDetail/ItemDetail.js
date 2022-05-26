@@ -5,9 +5,12 @@ import { Link } from "react-router-dom"
 
 export default function ItemDetail ({product}) {
     
-    const [count, setCount] = React.useState(1);
-    const onAdd = (quantityToAdd) => setCount(count + quantityToAdd);
-    const addToCart = () => console.log("TODO: Agregar a carrito");
+    const [goToCart, setGoToCart] = React.useState(false);
+    const [amountToBuy, setAmountToBuy] = React.useState(0);
+    const onAdd = (amount) => {
+        setAmountToBuy(amount);
+        setGoToCart(true);
+    }
 
     return (
         <div>
@@ -22,16 +25,11 @@ export default function ItemDetail ({product}) {
                     Precio: {product.price}
                 </Card.Text>
 
-                <ItemCount 
-                    count={count}
-                    stock={product.stock} 
-                    onAdd={onAdd}
-                />
-
-                <div className="agregar">
-                    <input type="button" value="Agregar al Carrito" onClick={addToCart}/>
-                    <Link to={'/cart'}><input type="button" value="Finalizar Compra"/></Link>
-                </div>                
+                {
+                    goToCart ?
+                    <Link to='/cart'>Finalizar Compra</Link> :
+                    <ItemCount initial={1} stock={product.stock} onAdd={onAdd}/>
+                }
 
             </Card.Body>
             </Card>
