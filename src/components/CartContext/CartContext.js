@@ -1,43 +1,36 @@
-import React, { createContext } from "react"
+import React, { createContext, useState } from "react"
 
-export const contexto = createContext()
+const CartContext = createContext();
+const {Provider} = CartContext
 
-const INITIAL = {
-    products: {},
-    total: 0
-}
+const CartProvider = ({children}) => {
 
-export default function CartContext({children}) {
+    const [cart, setCart] = useState([])
+    
+    const addProduct = (product) => {
 
-    // La estructura de nuestro carrito sera un objeto en donde las claves son
-    // los ids de los productos y las cantidades los valores.
-    // cart = {
-    //    productos: {
-    //        1: 10,
-    //        4: 15
-    //    },
-    //    total: 0
-    // }
-    const [cart, setCart] = React.useState(INITIAL)
-
-
-    const addProduct = ({id, amount}) => {
-        setCart({...INITIAL, products: {...cart.products, [id]:amount}})
+        // filter crea un nuevo array con todos los elementos que pasan la condicion
+        const newCart = cart.filter(oldProduct => oldProduct.id !== product.id);
+        newCart.push(product);
+        setCart(newCart)
     }
 
     const removeProduct = ({id}) => {
-        const { [id]: amount, ...products } = cart.products;
-        setCart({...INITIAL, products: products})
+        
+        // filter crea un nuevo array con todos los elementos que pasan la condicion
+        const newCart = cart.filter(oldProduct => oldProduct.id !== id);
+        setCart(newCart)
     }
 
-    const clear = () => {
-        setCart(INITIAL)
+    const clearAll = () => {
+        setCart([])
     }
 
     return (
-        <contexto.Provider value={{cart, addProduct, removeProduct, clear}}>
+        <Provider value={{cart, addProduct, removeProduct, clearAll}}>
             {children}
-        </contexto.Provider>
+        </Provider>
     )
-
 }
+
+export {CartContext, CartProvider}

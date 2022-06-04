@@ -2,16 +2,16 @@ import React, { useContext } from "react"
 import { Card } from "react-bootstrap"
 import ItemCount from "../ItemCount/ItemCount"
 import { Link } from "react-router-dom"
-import { contexto } from "../CartContext/CartContext"
+import { CartContext } from "../CartContext/CartContext"
 
 export default function ItemDetail ({product}) {
     
-    const {cart, addProduct} = useContext(contexto);
+    const {cart, addProduct} = useContext(CartContext);
     
     const [goToCart, setGoToCart] = React.useState(false);
     
     const onAdd = (amount) => {
-        addProduct({id: product.id, amount})
+        addProduct({...product, amount: amount})
         setGoToCart(true);
     }
 
@@ -31,7 +31,8 @@ export default function ItemDetail ({product}) {
                 {
                     goToCart ?
                     <Link to='/cart'>Finalizar Compra</Link> :
-                    <ItemCount initial={1} stock={product.stock} onAdd={onAdd}/>
+                    <ItemCount onSubmit={() => addProduct(product)} initial={1} stock={product.stock} onAdd={onAdd} />
+//                    <button onClick={()=> addProduct(product)}></button>
                 }
 
             </Card.Body>

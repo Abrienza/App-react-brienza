@@ -42,7 +42,7 @@ export default function NavBarAye() {
             </div>
             <div>
                 <Button texto="Ir al Carrito"/>
-                <CartWidget counter={2}/>
+                <CartWidget />
             </div> 
         </header>
         </>

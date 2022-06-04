@@ -1,7 +1,8 @@
 import React from "react";
+import { CartContext } from "../CartContext/CartContext"
 
-export default function ItemCount({initial, stock, onAdd}) {
-
+export default function ItemCount({initial, stock, onAdd, onSubmit}) {
+//no poner acá onSubmit para que sea mas reutilizable
     const [count, setCount] = React.useState(initial);
 
     const handleResto = () => {

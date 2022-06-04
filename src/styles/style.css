@@ -71,3 +71,15 @@ h1 {
     flex-wrap: wrap;
 }
 
+.carrito {
+    width: 30px;
+    height: 30px;
+    text-decoration: solid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color:aqua;
+    border-radius: 20px;
+}

@@ -4,7 +4,7 @@ export const products_json = [
         title: "Azalea",
         stock: 3,
         price: 1500,
-        image: "img/botanica.png",
+        image: "http://localhost:3000/img/botanica.png",
         categoryId: "oferta"
     },
     {
@@ -12,7 +12,7 @@ export const products_json = [
         title: "Helecho",
         stock: 3,
         price: 2500,
-        image: "img/botanica.png",
+        image: "http://localhost:3000/img/botanica.png",
         categoryId: "oferta"
     },
     {
@@ -20,7 +20,7 @@ export const products_json = [
         title: "Dodonea",
         stock: 5,
         price: 1000,
-        image: "img/botanica.png",
+        image: "http://localhost:3000/img/botanica.png",
         categoryId: "interior"
     },
     {
@@ -28,7 +28,7 @@ export const products_json = [
         title: "Rosa",
         stock: 1,
         price: 3000,
-        image: "img/botanica.png",
+        image: "http://localhost:3000/img/botanica.png",
         categoryId: "interior"
     },
     {
@@ -36,7 +36,7 @@ export const products_json = [
         title: "Palmera",
         stock: 4,
         price: 5000,
-        image: "img/botanica.png",
+        image: "http://localhost:3000/img/botanica.png",
         categoryId: "exterior"
     },
 ]
