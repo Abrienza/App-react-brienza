@@ -7,7 +7,6 @@ export default function Category() {
 
     return(
         <div>
-            <h2> Categoría </h2>
             <ItemListContainer categoryId={id} />
         </div>
     )

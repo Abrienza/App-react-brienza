@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { CartProvider } from "./components/CartContext/CartContext"
 
 import Home from "./views/Home/Home"
-import Cart from "./views/Cart/Cart"
+import CartView from "./views/Cart/Cart"
 import ItemDetail from "./views/ItemDetail/ItemDetail"
 import Category from "./views/Category/Category"
 import CheckOut from "./views/CheckOut/CheckOut"
@@ -17,7 +17,7 @@ export default function App() {
                     <Route exact path="/" element={<Home/>} />
                     <Route exact path="/item/:id" element={<ItemDetail/>} />
                     <Route exact path="/category/:id" element={<Category/>} />
-                    <Route exact path="/cart" element={<Cart/>} />
+                    <Route exact path="/cart" element={<CartView/>} />
                     <Route exact path="/checkout" element={<CheckOut/>} />
                 </Routes>
             </CartProvider>

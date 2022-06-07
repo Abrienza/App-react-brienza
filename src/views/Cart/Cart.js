@@ -1,8 +1,7 @@
-export default function Cart() {
+import Cart from "../../components/Cart/Cart"
+
+export default function CartView() {
     return(
-        <div>
-            <h2> Cart </h2>
-            <p> Aquí importaré mi Cart luego</p>
-        </div>
+        <Cart />
     )
 }

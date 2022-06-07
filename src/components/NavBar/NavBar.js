@@ -14,18 +14,7 @@ export default function NavBarAye() {
         padding: "1rem",
     };
 
-    const esteClick = () => {
-        alert("Bien hecho")
-    }
-
-    const Button = ({ texto }) => {
-        return (
-            <input type="button" value={texto} onClick={esteClick}/>
-        )
-    }
-
     return (
-        <>
         <header className= "header">
             <div className= "logo">
                 <ul>
@@ -41,10 +30,8 @@ export default function NavBarAye() {
                 </ul>
             </div>
             <div>
-                <Button texto="Ir al Carrito"/>
                 <CartWidget />
             </div> 
         </header>
-        </>
     );
 };

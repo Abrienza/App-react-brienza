@@ -6,7 +6,7 @@ import { CartContext } from "../CartContext/CartContext"
 
 export default function ItemDetail ({product}) {
     
-    const {cart, addProduct} = useContext(CartContext);
+    const {addProduct} = useContext(CartContext);
     
     const [goToCart, setGoToCart] = React.useState(false);
     
@@ -32,7 +32,6 @@ export default function ItemDetail ({product}) {
                     goToCart ?
                     <Link to='/cart'>Finalizar Compra</Link> :
                     <ItemCount onSubmit={() => addProduct(product)} initial={1} stock={product.stock} onAdd={onAdd} />
-//                    <button onClick={()=> addProduct(product)}></button>
                 }
 
             </Card.Body>

@@ -8,7 +8,7 @@ export const getProductsByCategory = (categoryId) => {
             } else {
                 resolve(products_json);
             }
-        }, 2000)
+        }, 1000)
     })
 }
 
@@ -17,6 +17,6 @@ export const getProductById = (productId) => {
     return new Promise((resolve, rejected) => {
         setTimeout(() => {
             resolve(products_json.find( e => e.id == productId ));
-        }, 2000)
+        }, 1000)
     })
 }

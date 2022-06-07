@@ -5,16 +5,17 @@ import { Link } from "react-router-dom";
 import React, { useContext } from "react";
 
 export default function CartWidget(){
-    const {cart} = useContext(CartContext);
+    const {totalProducts} = useContext(CartContext);
 
     return(
-        <div>
-            <Link to="/cart">
-                <FontAwesomeIcon icon={faCartShopping} />
+        <Link to="/cart">
+            <FontAwesomeIcon icon={faCartShopping} />
+            {
+                totalProducts !== 0 &&
                 <span className= "carrito">
-                    {cart.length}
+                    {totalProducts}
                 </span>
-            </Link>
-        </div>
+            }
+        </Link>
     )
 }
