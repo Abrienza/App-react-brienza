@@ -2,58 +2,35 @@ import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { getFirestore, getDoc, doc } from "firebase/firestore";
-//import { getProductById } from "../../mocks/FakeApi";
 
 export default function ItemDetailContainer({productId}) {
 
     const [product, setProduct] = useState({})
-
-    const [charge, setcharge] = useState(false)
-
+    const [charge, setCharge] = useState(false)
 
     useEffect(() => {
+
         const db = getFirestore();
 
-        const productsCollection = db.collection("products");
-        const productsRef = doc(db, "products", "xxxxxx");
-        getDoc(productsRef).then((snapshot) => {
-            if (snapshot.exists()) {
-                setProduct({ id: snapshot.id, ...snapshot.data() });
+        // Busco el producto por ID
+        const productQuery = doc(db, 'products', productId);
+    
+        setCharge(true);
+
+        // getDoc retorna un unico valor (por eso no hay docs en el medio)
+        getDoc(productQuery).then(response => {
+            if (!response.exists()) {
+                console.log("El producto no existe");  // TODO: Mostrar al usuario
+            } else {
+                setProduct({ id: response.id, ...response.data() });
             }
-        })
-    }, []);
-
-
-    //useEffect(() => {
-        //const db = getFirestore();
-        //const productsCollection = db.collection("products");
-        //const productsRef = productsCollection.where("categoryId", "==", categoryId);
-        //const unsubscribe = productsRef.onSnapshot(snapshot => {
-            //const products = snapshot.docs.map(doc => {
-                //return {
-                    //id: doc.id,
-                    //...doc.data()
-                //};
-            //});
-            //setProduct(product);
-            //setIsLoading(false);
-        //});
-        //return () => unsubscribe();
-    //}, [])
-
-    //useEffect(() => {
-        //setcharge(true)
-
-        //getProductById(productId)
-            //.then((result) => {
-                //setProduct(result);
-            //})
-            //.catch((err) => {
-                //console.log('Error', err)
-            //})
-            //.finally((_) => setcharge(false))
-    //}, [])
-
+        }).catch((err) => {
+            console.log('Error:', err)
+        }).finally(
+            () => setCharge(false)
+        );
+    
+      }, [productId]);
 
     return (
         <Container className="item-details-container">
@@ -66,7 +43,4 @@ export default function ItemDetailContainer({productId}) {
         </Container>
 
     )
-
-
 }
-

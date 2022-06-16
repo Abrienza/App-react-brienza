@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { CartProvider } from "./components/CartContext/CartContext"
+import { CartProvider } from "../src/context/CartContext"
 
-import Home from "./views/Home/Home"
-import CartView from "./views/Cart/Cart"
-import ItemDetail from "./views/ItemDetail/ItemDetail"
-import Category from "./views/Category/Category"
-import CheckOut from "./views/CheckOut/CheckOut"
+import Home from "./views/HomeView/HomeView"
+import CartView from "./views/CartView/CartView"
+import ItemDetail from "./views/ItemDetailView/ItemDetailView"
+import Category from "./views/CategoryView/CategoryView"
+import CheckOut from "./views/CheckOutView/CheckOutView"
 import Navbar from "./components/NavBar/NavBar"
 
 export default function App() {

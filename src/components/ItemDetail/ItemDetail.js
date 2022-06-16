@@ -1,8 +1,8 @@
-import React, { useContext } from "react"
-import { Card } from "react-bootstrap"
-import ItemCount from "../ItemCount/ItemCount"
-import { Link } from "react-router-dom"
-import { CartContext } from "../CartContext/CartContext"
+import React, { useContext } from "react";
+import { Card } from "react-bootstrap";
+import ItemCount from "../ItemCount/ItemCount";
+import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext"
 
 export default function ItemDetail ({product}) {
     
