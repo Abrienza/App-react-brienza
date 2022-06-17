@@ -22,8 +22,8 @@ export default function CartWidget(){
                 <>
                     <div>Total cantidad</div>
                     <div>Total precio</div>
-                    <Link to={"/checkout"}>
-                        <button>Checkout</button>
+                    <Link to="/CheckOut">
+                        <button>CheckOut</button>
                     </Link>
                     <button onClick={clearAll}>Borrar carrito</button>
                 </> :

@@ -4,7 +4,6 @@ import App from './App';
 import "./styles/style.css";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/styles.sass';
 
 
 // Import the functions you need from the SDKs you need

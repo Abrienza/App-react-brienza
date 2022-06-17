@@ -1,8 +1,7 @@
-export default function CheckOut() {
+import CheckOut from "../../components/CheckOut/CheckOut"
+
+export default function CheckOutView() {
     return(
-        <div>
-            <h2> CheckOut </h2>
-            <p> Aquí importaré mi CheckOut luego</p>
-        </div>
+        <CheckOut />
     )
 }
