@@ -56,6 +56,13 @@ h1 {
 	top: 200px;
 }
 
+Button {
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    font-size: 8rem;
+	position: relative;
+}
+
 .itemlist-container {
     display: flex;
     justify-content: center;
@@ -72,14 +79,27 @@ h1 {
 }
 
 .carrito {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     text-decoration: solid;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
     align-items: center;
-    background-color:aqua;
-    border-radius: 20px;
+    background-color:blanchedalmond;
+    border-color:blue;
+    border-style: double;
+    border-bottom-left-radius: 30%;
+    border-top-right-radius: 30%;
+    
+}
+
+.formularioCheckout {
+    margin: 8rem 16rem;
+	padding: 1rem;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1.5rem;
+    background-color: blanchedalmond;
+    
 }

@@ -32,8 +32,14 @@ const CartProvider = ({children}) => {
             0), // valor inicial
         [cart]);
 
+    const totalPrice = useMemo(
+        () => cart.reduce(
+            (previousValue, currentValue) => previousValue + (currentValue.amount * currentValue.price),
+            0), // valor inicial
+        [cart]);
+
     return (
-        <Provider value={{cart, addProduct, removeProduct, clearAll, totalProducts}}>
+        <Provider value={{cart, addProduct, removeProduct, clearAll, totalProducts, totalPrice}}>
             {children}
         </Provider>
     )

@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { getFirestore, getDoc, doc } from "firebase/firestore";
 
+
 export default function ItemDetailContainer({productId}) {
 
     const [product, setProduct] = useState({})
