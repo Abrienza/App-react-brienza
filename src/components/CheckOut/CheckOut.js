@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
-import { getFirestore, collection, addDoc, writeBatch, doc } from "firebase/firestore";
-import { Form, Row, Col, Button } from "react-bootstrap"
-import { Link } from "react-router-dom";
-import Cart from "../Cart/Cart"
+import { getFirestore, collection, addDoc, } from "firebase/firestore";
+import { Form, Row, Col, Button, Card } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CheckOut(){
     
-    const {cart, totalProducts, totalPrice} = useContext(CartContext);
+    const navigate = useNavigate();
+
+    const {cart, totalProducts, totalPrice, clearAll} = useContext(CartContext);
 
     const [order, setOrder] = useState({
         buyer: {},
@@ -16,8 +17,6 @@ export default function CheckOut(){
         totalProducts,
         totalPrice,
     })
-
-    const [orderId, setOrderId] = useState()
 
     const [buyer, setBuyer] = useState({
         firstname: "",
@@ -41,7 +40,7 @@ export default function CheckOut(){
     }
     
     // Accion que se ejecuta al hacer click en el boton finalizar compra
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         
         // evita que el formulario haga una redireccion
         event.preventDefault();
@@ -51,15 +50,16 @@ export default function CheckOut(){
         
         const ordersCollection = collection(db, "orders");        
         
-        await addDoc(ordersCollection, order).then(({ id }) => {
-            setOrderId(id)
-            // updateProducts()
+        addDoc(ordersCollection, order).then(({ id }) => {
+            clearAll()
+            // updateStock()
+            navigate(`/order/${id}`);
         })
 
     }
 
     // //batch update de productos una vez generada la orden
-    // const updateProducts = () => {
+    // const updateStock = () => {
     //     const db = getFirestore();
     //     const batch = writeBatch(db); //inicio nuevo batch
     //     // obtener las referencias por cada item del carrito
@@ -74,56 +74,51 @@ export default function CheckOut(){
 
     return (
         <>
-        {
-            orderId ?
-                <>
-                    <p>Su compra fue realizadaAAAA con exito: {orderId} </p>
-                    <p>{JSON.stringify(order)}</p>
-                </> :
-            <Form onSubmit={handleSubmit} className="formularioCheckout">
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridName">
-                        <Form.Label>First Name</Form.Label>
-                        <Form.Control name="firstname" onChange={handleChange} type="name" placeholder="Enter first name" />
-                    </Form.Group>
+        <h2>Complete el siguiente formulario de CheckOut:</h2>
+        <Form onSubmit={handleSubmit} className="formularioCheckout">
 
-                    <Form.Group as={Col} controlId="formGridSurname">
-                        <Form.Label>Last Name</Form.Label>
-                        <Form.Control name="lastname" onChange={handleChange} type="name" placeholder="Enter last name"/>
-                    </Form.Group>
-                </Row>
-
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control name="email" onChange={handleChange} type="email" placeholder="Enter email" />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridPhone">
-                        <Form.Label>Phone</Form.Label>
-                        <Form.Control name="phone" onChange={handleChange} type="phone" placeholder="Enter phone" />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridCountry">
-                        <Form.Label>Country</Form.Label>
-                        <Form.Control name="country" onChange={handleChange} type="text" placeholder="Enter country"/>
-                    </Form.Group>
-                </Row>
-
-                <Form.Group className="mb-3" id="formGridCheckbox">
-                    <Form.Check type="checkbox" label="Acepto términos y condiciones" />
+            <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridName">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control name="firstname" onChange={handleChange} type="name" placeholder="Enter first name" />
                 </Form.Group>
 
+                <Form.Group as={Col} controlId="formGridSurname">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control name="lastname" onChange={handleChange} type="name" placeholder="Enter last name"/>
+                </Form.Group>
+            </Row>
 
-                <Button variant="secondary" type="submit">Finalizar Compra</Button>
-                
+            <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control name="email" onChange={handleChange} type="email" placeholder="Enter email" />
+                </Form.Group>
 
-                <Link to="/cart">
-                    <Button variant="light">Volver al carrito</Button>
-                </Link>
+                <Form.Group as={Col} controlId="formGridPhone">
+                    <Form.Label>Phone</Form.Label>
+                    <Form.Control name="phone" onChange={handleChange} type="phone" placeholder="Enter phone" />
+                </Form.Group>
 
-            </Form>
-        }
+                <Form.Group as={Col} controlId="formGridCountry">
+                    <Form.Label>Country</Form.Label>
+                    <Form.Control name="country" onChange={handleChange} type="text" placeholder="Enter country"/>
+                </Form.Group>
+            </Row>
+
+            <Form.Group className="mb-3" id="formGridCheckbox">
+                <Form.Check type="checkbox" label="Acepto términos y condiciones" />
+            </Form.Group>
+
+
+            <Button variant="secondary" type="submit">Finalizar Compra</Button>
+            
+
+            <Link to="/cart">
+                <Button variant="light">Volver al carrito</Button>
+            </Link>
+
+        </Form>
         </>
     )
 }

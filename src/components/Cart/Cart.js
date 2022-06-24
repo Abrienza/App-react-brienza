@@ -12,18 +12,18 @@ export default function CartWidget(){
             { 
                 cart.map((product) =>
                     <Card key={product.id} className="text-center">
-                    <Card.Body>
-                        <Card.Text>
-                            Producto: {product.title}
-                        </Card.Text>
-                        <Card.Text>
-                            Precio unitario: {product.price}
-                        </Card.Text>
-                        <Card.Text>
-                            Cantidad: {product.amount}
-                        </Card.Text>
-                        <Button variant="dark" onClick={() => removeProduct(product.id)}>Quitar</Button>
-                    </Card.Body>                        
+                        <Card.Body>
+                            <Card.Text>
+                                Producto: {product.title}
+                            </Card.Text>
+                            <Card.Text>
+                                Precio unitario: {product.price}
+                            </Card.Text>
+                            <Card.Text>
+                                Cantidad: {product.amount}
+                            </Card.Text>
+                            <Button variant="dark" onClick={() => removeProduct(product.id)}>Quitar</Button>
+                        </Card.Body>                        
                     </Card>
                 )
             }
@@ -31,30 +31,30 @@ export default function CartWidget(){
                 totalProducts ?
                 <>  
                     <Card className="text-center">
-                    <Card.Body>
-                    <div>Total cantidad: {totalProducts}</div>
+                        <Card.Body>
+                            <div>Total cantidad: {totalProducts}</div>
+                            <div>Total precio: {totalPrice}</div>
 
-                    <div>Total precio: {totalPrice}</div>
-                        <Card.Footer className="text-muted">
-                        <Link to="/CheckOut">
-                            <Button variant="success">CheckOut</Button>
-                        </Link>
-                        <Button variant="danger" onClick={clearAll}>Borrar carrito</Button>
-                        <br/>
-                        <br/>
-                        <Link to="/">
-                            <Button variant="light">Click aquí para seguir comprando</Button>
-                        </Link>
-                        </Card.Footer>
-                    </Card.Body>
+                            <Card.Footer className="text-muted">
+                                <Link to="/CheckOut">
+                                    <Button variant="success">CheckOut</Button>
+                                </Link>
+                                <Button variant="danger" onClick={clearAll}>Borrar carrito</Button>
+                                <Link to="/">
+                                    <Button variant="light">Click aquí para seguir comprando</Button>
+                                </Link>
+                            </Card.Footer>
+                        </Card.Body>
                     </Card>
                 </> :
                 <>
                     <Card className="text-center">
-                    <Card.Body>
-                    <div>El carrito esta vacio</div>
-                    <Link to={"/"}>Volver a inicio</Link>
-                    </Card.Body>
+                        <Card.Body>
+                            <div>El carrito esta vacio</div>
+                            <Link to={"/"}>
+                                <Button variant="light"> Volver a inicio</Button>
+                            </Link>
+                        </Card.Body>
                     </Card>
 
                 </>

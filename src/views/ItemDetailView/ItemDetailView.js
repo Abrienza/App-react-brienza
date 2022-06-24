@@ -6,9 +6,7 @@ export default function ItemDetailView() {
     const { id } = useParams();
 
     return (
-        <div>
-            <ItemDetailContainer productId={id}/>
-        </div>
+        <ItemDetailContainer productId={id}/>
     )
 }
 
