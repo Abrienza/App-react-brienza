@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Button, Card } from 'react-bootstrap';
 
-export default function ItemCount({initial, stock, onAdd, onSubmit}) {
+export default function ItemCount({initial, stock, onAdd}) {
 //no poner acá onSubmit para que sea mas reutilizable
     const [count, setCount] = useState(initial);
 
@@ -23,16 +24,14 @@ export default function ItemCount({initial, stock, onAdd, onSubmit}) {
     }
 
     return (
-        <div className= "contenedorContador">
+        <div>
             <div>
-                <div>
-                    <input type="button" value=" - " onClick={handleResto} />
-                    <span> {count} </span>
-                    <input type="button" value=" + " onClick={handleSumo} />                    
-                </div>
+                <Button className= "buttonGeneral" variant="secondary" onClick={handleResto}> - </Button>
+                <span> {count} </span>
+                <Button className= "buttonGeneral" variant="secondary" onClick={handleSumo}> + </Button>                   
             </div>
-            <div className="agregar">
-                <input type="button" value="Agregar al Carrito" onClick={addToCart}/>
+            <div>
+                <Button className= "buttonGeneral" variant="secondary" onClick={addToCart}> Agregar al Carrito </Button>
             </div>
         </div>
     )}      

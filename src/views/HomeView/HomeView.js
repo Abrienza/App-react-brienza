@@ -3,8 +3,7 @@ import ItemListContainer from "../../components/ItemListContainer/ItemListContai
 export default function HomeView() {
     return(
         <div className="App">
-            <h2> PUNTO DE PARTIDA PARA VISITAR NUESTRA TIENDA </h2>
-            <p> Disfruta de todas nuestras PROMOS</p>
+            <h1> Aquí encontrarás las mejores plantas para tu hogar </h1>
             <ItemListContainer/>
         </div>
     )

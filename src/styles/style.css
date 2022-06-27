@@ -47,20 +47,49 @@ header {
     padding: 2rem 2rem
 }
 
+main {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 3rem;
+}
+
 h1 {
     font-family: 'Josefin Sans', sans-serif;
     text-align: center;
     font-size: 4rem;
 	color:brown;
 	position: relative;
-	top: 200px;
+	top: 2rem;
 }
 
-Button {
+h2 {
     font-family: 'Josefin Sans', sans-serif;
     text-align: center;
-    font-size: 8rem;
+    font-weight: bold;
+	color:brown;
+	padding: 2rem;
+}
+
+h3 {
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    font-weight: bold;
+	color:brown;
+	padding: 2rem;
+}
+
+.tituloCard {
+	padding: 2rem;
+}
+
+.buttonGeneral {
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    font-size: 4rem;
 	position: relative;
+    padding: 0.5rem;
+    margin: 0.5rem;
 }
 
 .itemlist-container {
@@ -68,38 +97,82 @@ Button {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    align-content: center;
 
 }
 
-.item {
+.itemdetail-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    align-content: center;
     flex-wrap: wrap;
+
+}
+
+.ItemListGeneral {
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items:center;
+    align-content: center;
+
+}
+
+.itemGeneral {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    border: 2.5px solid #000;
+    margin: 2rem;
+}
+
+.itemDetailGeneral {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    border: 2.5px solid #000;
+    margin: 2rem;
+}
+
+
+.imgCarrito {
+    width: 30px;
+    height: 30px;
+    text-decoration: solid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    
 }
 
 .carrito {
     width: 40px;
     height: 40px;
-    text-decoration: solid;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 3px;
+    font-size:x-large;
     justify-content: center;
     align-content: center;
     align-items: center;
     background-color:blanchedalmond;
-    border-color:blue;
-    border-style: double;
-    border-bottom-left-radius: 30%;
-    border-top-right-radius: 30%;
+    border-bottom-right-radius: 30%;
+    border-top-left-radius: 30%;
     
 }
 
 .formularioCheckout {
-    margin: 8rem 16rem;
-	padding: 1rem;
+    margin: 2rem 16rem;
+	padding: 3rem;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 1.5rem;
     background-color: blanchedalmond;
     
+}
+
+.card {
+    text-align: center;
 }

@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import { CartContext } from "../../context/CartContext";
-import { getFirestore, collection, addDoc, } from "firebase/firestore";
-import { Form, Row, Col, Button, Card } from "react-bootstrap";
+import { getFirestore, collection, addDoc, writeBatch, doc } from "firebase/firestore";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function CheckOut(){
@@ -10,14 +10,7 @@ export default function CheckOut(){
 
     const {cart, totalProducts, totalPrice, clearAll} = useContext(CartContext);
 
-    const [order, setOrder] = useState({
-        buyer: {},
-        products: cart,
-        date: new Date(),
-        totalProducts,
-        totalPrice,
-    })
-
+    const [email2, setEmail2] = useState();
     const [buyer, setBuyer] = useState({
         firstname: "",
         lastname: "",
@@ -29,52 +22,71 @@ export default function CheckOut(){
     const db = getFirestore();
 
     // Guardo los datos del formulario
-    const handleChange = (event) => {
-        
+    const handleChange = (event) => {  
         // evita la accion por defecto del campo editado
         event.preventDefault();
-        
         const {name, value} = event.target;
-        
-        setBuyer({...buyer, [name]: value});
+        if (name == "email2") {
+            setEmail2(value);
+        } else {
+            setBuyer({...buyer, [name]: value});
+        }
     }
     
+    const validate = () => {
+        // valida el formulario
+        if (buyer.email !== email2) {
+            return false
+        }
+        return true
+    }
+
+    const validated = useMemo(validate, [buyer, email2]);
+
     // Accion que se ejecuta al hacer click en el boton finalizar compra
     const handleSubmit = (event) => {
         
         // evita que el formulario haga una redireccion
         event.preventDefault();
 
-        // Actualizo la orden con la informacion del buyer
-        setOrder({...order, buyer})
-        
-        const ordersCollection = collection(db, "orders");        
-        
-        addDoc(ordersCollection, order).then(({ id }) => {
-            clearAll()
-            // updateStock()
-            navigate(`/order/${id}`);
-        })
+        if (!validate()) {
+            console.log('fallo la validacion')
+        } else {
+
+            // crea la orden
+            const order = {
+                buyer,
+                products: cart,
+                date: new Date(),
+                totalProducts,
+                totalPrice,
+            }
+            
+            const ordersCollection = collection(db, "orders");        
+            
+            addDoc(ordersCollection, order).then(({ id }) => {
+                clearAll()
+                updateStock()
+                navigate(`/order/${id}`);
+            })
+        }
 
     }
 
-    // //batch update de productos una vez generada la orden
-    // const updateStock = () => {
-    //     const db = getFirestore();
-    //     const batch = writeBatch(db); //inicio nuevo batch
-    //     // obtener las referencias por cada item del carrito
-    //         cart.forEach(product => { //recorro carrito
-    //             const productRef = doc(db,"products", product.id)
-    //                 batch.update(productRef, { //listamos el update en el batch
-    //                     stock: 5,
-    //         }); 
-    //     })
-    //     batch.commit()
-    // }
+    //batch update de productos una vez generada la orden
+    const updateStock = () => {
+        const batch = writeBatch(db); //inicio nuevo batch
+        // obtener las referencias por cada item del carrito
+            cart.forEach(product => { //recorro carrito
+                const productRef = doc(db,"products", product.id)
+                    batch.update(productRef, { //listamos el update en el batch
+                        stock: product.stock - product.amount,
+            }); 
+        })
+        batch.commit()
+    }
 
     return (
-        <>
-        <h2>Complete el siguiente formulario de CheckOut:</h2>
         <Form onSubmit={handleSubmit} className="formularioCheckout">
 
             <Row className="mb-3">
@@ -94,31 +106,31 @@ export default function CheckOut(){
                     <Form.Label>Email</Form.Label>
                     <Form.Control name="email" onChange={handleChange} type="email" placeholder="Enter email" />
                 </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridPhone">
-                    <Form.Label>Phone</Form.Label>
-                    <Form.Control name="phone" onChange={handleChange} type="phone" placeholder="Enter phone" />
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridCountry">
-                    <Form.Label>Country</Form.Label>
-                    <Form.Control name="country" onChange={handleChange} type="text" placeholder="Enter country"/>
+                <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Label>Email confirmation</Form.Label>
+                    <Form.Control name="email2" onChange={handleChange} type="email"
+                        placeholder="Enter email" isInvalid={!validated}/>
                 </Form.Group>
             </Row>
 
-            <Form.Group className="mb-3" id="formGridCheckbox">
-                <Form.Check type="checkbox" label="Acepto términos y condiciones" />
+            <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridPhone">
+                    <Form.Label>Phone</Form.Label>
+                    <Form.Control name="phone" onChange={handleChange} type="phone" placeholder="Enter phone" />
             </Form.Group>
 
+            <Form.Group as={Col} controlId="formGridCountry">
+                <Form.Label>Country</Form.Label>
+                <Form.Control name="country" onChange={handleChange} type="text" placeholder="Enter country"/>
+            </Form.Group>
+            </Row>
 
-            <Button variant="secondary" type="submit">Finalizar Compra</Button>
+            <Button type="submit" disabled={!validated} className= "buttonGeneral" variant="secondary">Finalizar Compra</Button>
             
-
             <Link to="/cart">
-                <Button variant="light">Volver al carrito</Button>
+                <Button variant="secondary" className="buttonGeneral">Volver al carrito</Button>
             </Link>
 
         </Form>
-        </>
     )
 }

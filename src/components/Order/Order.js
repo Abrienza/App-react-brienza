@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { Form, Row, Col, Button, Card } from "react-bootstrap";
+import { Button, Card, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const INITIAL = 0;  // No se cargo nada
@@ -38,25 +38,18 @@ export default function Order({orderId}){
     return (
         <>
         {
-            state == INITIAL ? <p>Estado inicial</p> : 
-            state == LOADING ? <p>Cargando...</p> : 
-            state == NOT_FOUND ? <p>Orden no encontrada</p> :
+            state == INITIAL || state == LOADING ? <Spinner animation="border" variant="danger" /> : 
+            state == NOT_FOUND ? <h2>Orden no encontrada</h2> :
             <>
                 <Card className="text-center">
                     <Card.Body>
-                        <h2>Su compra fue realizada con exito, su número de orden es: {orderId} </h2>
+                        <h2>Su compra fue realizada con exito, el número de orden es: {orderId} </h2>
                         <div>Total unidades: {order.totalProducts}</div>
-                        <div>Total precio: {order.totalPrice}</div>
-
-                        <Card.Footer className="text-muted">
-                            <Link to="/">
-                                <Button variant="light">Click aquí para volver a Inicio</Button>
-                            </Link>
-                        </Card.Footer>
+                        <div>Total precio: AR$ {order.totalPrice}</div>
                     </Card.Body>
                 </Card>
 
-                <h2>Detalle de compra</h2>
+                <h2>Detalle de la compra</h2>
 
                 {
                     order.products.map((product) =>
@@ -77,7 +70,6 @@ export default function Order({orderId}){
                 }
 
                 <h2>Detalle del comprador</h2>
-
                 <Card key={order.buyer.name} className="text-center">
                     <Card.Body>
                         <Card.Text>
@@ -90,6 +82,11 @@ export default function Order({orderId}){
                             Country: {order.buyer.country}
                         </Card.Text>
                     </Card.Body>
+                    <Card.Footer className="text-muted">
+                        <Link to="/">
+                            <Button variant="secondary" className="buttonGeneral">Click aquí para volver a Inicio</Button>
+                        </Link>
+                    </Card.Footer>
                 </Card>
             </>
         }

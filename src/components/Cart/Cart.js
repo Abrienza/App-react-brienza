@@ -1,23 +1,23 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Button, Card } from 'react-bootstrap';
+
 
 export default function CartWidget(){
     const {cart, removeProduct, clearAll, totalProducts, totalPrice} = useContext(CartContext);
 
     return(
-        <div>
+        <div className="text-center">
             { 
                 cart.map((product) =>
-                    <Card key={product.id} className="text-center">
+                    <Card key={product.id}>
                         <Card.Body>
                             <Card.Text>
                                 Producto: {product.title}
                             </Card.Text>
                             <Card.Text>
-                                Precio unitario: {product.price}
+                                Precio unitario: AR$ {product.price}
                             </Card.Text>
                             <Card.Text>
                                 Cantidad: {product.amount}
@@ -33,15 +33,15 @@ export default function CartWidget(){
                     <Card className="text-center">
                         <Card.Body>
                             <div>Total cantidad: {totalProducts}</div>
-                            <div>Total precio: {totalPrice}</div>
+                            <div>Total precio: AR$ {totalPrice}</div>
 
                             <Card.Footer className="text-muted">
                                 <Link to="/CheckOut">
-                                    <Button variant="success">CheckOut</Button>
+                                    <Button className= "buttonGeneral" variant="success">CheckOut</Button>
                                 </Link>
-                                <Button variant="danger" onClick={clearAll}>Borrar carrito</Button>
+                                <Button className= "buttonGeneral" variant="danger" onClick={clearAll}>Borrar carrito</Button>
                                 <Link to="/">
-                                    <Button variant="light">Click aquí para seguir comprando</Button>
+                                    <Button className= "buttonGeneral" variant="secondary">Click aquí para seguir comprando</Button>
                                 </Link>
                             </Card.Footer>
                         </Card.Body>
@@ -50,9 +50,9 @@ export default function CartWidget(){
                 <>
                     <Card className="text-center">
                         <Card.Body>
-                            <div>El carrito esta vacio</div>
+                            <h2>El carrito esta vacío</h2>
                             <Link to={"/"}>
-                                <Button variant="light"> Volver a inicio</Button>
+                                <Button className= "buttonGeneral" variant="secondary"> Volver a inicio</Button>
                             </Link>
                         </Card.Body>
                     </Card>

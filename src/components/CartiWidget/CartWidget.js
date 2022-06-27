@@ -9,7 +9,7 @@ export default function CartWidget(){
 
     return(
         <Link to="/cart">
-            <FontAwesomeIcon icon={faCartShopping} />
+            <FontAwesomeIcon className= "imgCarrito" icon={faCartShopping} />
             {
                 totalProducts !== 0 &&
                 <span className= "carrito">

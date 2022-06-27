@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { getFirestore, getDoc, doc } from "firebase/firestore";
 
@@ -34,14 +34,13 @@ export default function ItemDetailContainer({productId}) {
       }, [productId]);
 
     return (
-        <Container className="item-details-container">
-            <main className="main">
-                <div className="title">
-                    <p>Detalle de Producto</p>
-                </div>                
-                {charge ? <p>Cargando... </p> : <ItemDetail product={product} />}
+        <>
+        <h2>Detalle de Producto</h2>
+        <Container className="itemdetail-container">
+            <main>        
+                {charge ? <Spinner animation="border" variant="danger" /> : <ItemDetail product={product} />}
             </main>
         </Container>
-
+        </>
     )
 }
