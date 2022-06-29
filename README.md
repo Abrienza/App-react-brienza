@@ -7,7 +7,8 @@ Este es un proyecto personal enfocado en el aprendizaje de React JS.
 ## Documentación
 
 * Link de animación a funcionalidad de Routing y Navegacion:
-  * [Enlace a  gif con la animación de la app brienza-app.gif] (https://github.com/Abrienza/App-react-brienza/blob/466bc1ef404f845513000e35ecd61a7e577a3be3/doc/brienza-app.gif)
+
+![Enlace a  gif con la animación de la app doc/brienza-app-final.gif](doc/brienza-app.gif)
 
 ## Librerías, framework y recursos utilizados:
 
