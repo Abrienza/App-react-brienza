@@ -6,7 +6,8 @@ import { getFirestore, collection, getDocs, query, where } from "firebase/firest
 export default function ItemListContainer({ categoryId }) {
 
     const [products, setProducts] = useState([]);
-    const [charge, setCharge] = useState(false)
+
+    const [charge, setCharge] = useState(false);
 
     useEffect(() => {
 
@@ -26,7 +27,7 @@ export default function ItemListContainer({ categoryId }) {
         getDocs(productQuery).then(snapshot => {
 
             if (snapshot.size === 0) {
-                console.log("No hay productos");  // TODO: Mostrar al usuario
+                console.log("No hay productos");
             } else {
                 setProducts(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data()})));
             }
@@ -42,7 +43,9 @@ export default function ItemListContainer({ categoryId }) {
     return (
         <Container className="itemlist-container">
             <main className="main">
-                {charge ? <Spinner animation="border" variant="danger" /> : <ItemList products={products} />}
+                {charge ? <Spinner
+                    animation="border"
+                    variant="danger" /> : <ItemList products={products} />}
             </main>
         </Container>
 

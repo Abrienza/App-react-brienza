@@ -59,7 +59,7 @@ export default function Order({orderId}){
                                 Producto: {product.title}
                             </Card.Text>
                             <Card.Text>
-                                Precio unitario: {product.price}
+                                Precio unitario: AR$ {product.price}
                             </Card.Text>
                             <Card.Text>
                                 Cantidad: {product.amount}
@@ -84,7 +84,9 @@ export default function Order({orderId}){
                     </Card.Body>
                     <Card.Footer className="text-muted">
                         <Link to="/">
-                            <Button variant="secondary" className="buttonGeneral">Click aquí para volver a Inicio</Button>
+                            <Button
+                                variant="secondary"
+                                className="buttonGeneral">Click aquí para volver a Inicio</Button>
                         </Link>
                     </Card.Footer>
                 </Card>

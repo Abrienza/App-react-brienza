@@ -3,11 +3,11 @@ import { Container, Spinner } from "react-bootstrap";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { getFirestore, getDoc, doc } from "firebase/firestore";
 
-
 export default function ItemDetailContainer({productId}) {
 
-    const [product, setProduct] = useState({})
-    const [charge, setCharge] = useState(false)
+    const [product, setProduct] = useState({});
+
+    const [charge, setCharge] = useState(false);
 
     useEffect(() => {
 
@@ -38,7 +38,9 @@ export default function ItemDetailContainer({productId}) {
         <h2>Detalle de Producto</h2>
         <Container className="itemdetail-container">
             <main>        
-                {charge ? <Spinner animation="border" variant="danger" /> : <ItemDetail product={product} />}
+                {charge ? <Spinner
+                    animation="border"
+                    variant="danger" /> : <ItemDetail product={product} />}
             </main>
         </Container>
         </>

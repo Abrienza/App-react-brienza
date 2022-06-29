@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Card, Button } from "react-bootstrap";
 import ItemCount from "../ItemCount/ItemCount";
 import { Link } from "react-router-dom";
-import { CartContext } from "../../context/CartContext"
+import { CartContext } from "../../context/CartContext";
 
 export default function ItemDetail ({product}) {
     
@@ -13,11 +13,11 @@ export default function ItemDetail ({product}) {
     const onAdd = (amount) => {
         addProduct({...product, amount: amount})
         setGoToCart(true);
-    }
+    };
 
     return (
         <div>
-            <Card border="dark" style={{ width: '25rem', borderBottomRightRadius: "30%", borderTopLeftRadius: "30%"}} className="itemDetailGeneral">
+            <Card className="itemDetailGeneral" border="dark" style={{ width: '25rem', borderBottomRightRadius: "30%", borderTopLeftRadius: "30%"}}>
             <Card.Img variant='bottom' style={{ width: '20rem', marginTop: "1rem"}} src={product.image} alt={product.name}/>
             <Card.Body className="text-center">
                 <Card.Title style={{ width: '20rem', margin: "1rem", fontSize:"2rem"}}>{product.title}</Card.Title>
@@ -37,8 +37,11 @@ export default function ItemDetail ({product}) {
                     <Card.Text style={{ width: '22rem', color: "#3DAF08"}}>
                     ESTAS A UN PASO DE TENER TU PRODUCTO!!!
                     </Card.Text>
+
                     <Link to='/cart'>
-                        <Button className= "buttonGeneral" variant="secondary">Finalizar Compra</Button>
+                        <Button
+                            className= "buttonGeneral"
+                            variant="secondary">Finalizar Compra</Button>
                     </Link>
                     </> :
                     <ItemCount onSubmit={() => addProduct(product)} initial={1} stock={product.stock} onAdd={onAdd} />

@@ -1,9 +1,8 @@
 import React from "react";
 import CartWidget from "../CartiWidget/CartWidget";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function NavBarAye() {
-
 
     const headerStyle = {
         display: "flex",

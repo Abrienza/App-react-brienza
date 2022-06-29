@@ -1,35 +1,35 @@
-import React, { createContext, useState, useMemo } from "react"
+import React, { createContext, useState, useMemo } from "react";
 
 const CartContext = createContext();
-const {Provider} = CartContext
+
+const {Provider} = CartContext;
 
 const CartProvider = ({children}) => {
 
     const [cart, setCart] = useState([])
     
     const addProduct = (product) => {
-        // filter crea un nuevo array con todos los elementos que pasan la condicion
+        // Filter crea un nuevo array con todos los elementos que pasan la condicion
         const newCart = cart.filter(oldProduct => oldProduct.id !== product.id);
         newCart.push(product);
         setCart(newCart)
-    }
+    };
 
-    const removeProduct = (id) => {
-        // filter crea un nuevo array con todos los elementos que pasan la condicion        
+    const removeProduct = (id) => {       
         const newCart = cart.filter(oldProduct => oldProduct.id !== id);
         setCart(newCart)
-    }
+    };
 
     const clearAll = () => {
         setCart([])
-    }
+    };
 
-    // useMemo memoriza el calculo y actualiza cuando cart se actualiza.
+    // UseMemo memoriza el calculo y actualiza cuando cart se actualiza
     const totalProducts = useMemo(
-        // reduce computa un unico valor sobre todo el array
+        // Reduce computa un unico valor sobre todo el array
         () => cart.reduce(
             (previousValue, currentValue) => previousValue + currentValue.amount,
-            0), // valor inicial
+            0), // Valor inicial
         [cart]);
 
     const totalPrice = useMemo(

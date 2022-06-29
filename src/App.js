@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { CartProvider } from "../src/context/CartContext"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "../src/context/CartContext";
 
 import HomeView from "./views/HomeView/HomeView"
 import CartView from "./views/CartView/CartView"

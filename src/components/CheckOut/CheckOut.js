@@ -10,38 +10,85 @@ export default function CheckOut(){
 
     const {cart, totalProducts, totalPrice, clearAll} = useContext(CartContext);
 
-    const [email2, setEmail2] = useState();
     const [buyer, setBuyer] = useState({
         firstname: "",
         lastname: "",
         email: "",
         phone: "",
         country: ""
-    })
+    });
+
+    const [edited, setEdited] = useState({
+        firstname: false,
+        lastname: false,
+        email: false,
+        email2: false,
+        phone: false,
+        country: false
+    });
+
+    const [validatedField, setvalidatedField] = useState({
+        firstname: false,
+        lastname: false,
+        email: false,
+        email2: false,
+        phone: false,
+        country: false
+    });    
 
     const db = getFirestore();
 
     // Guardo los datos del formulario
     const handleChange = (event) => {  
-        // evita la accion por defecto del campo editado
+        // Evita la accion por defecto del campo editado
         event.preventDefault();
+
+        // Actualizo valores de campos
         const {name, value} = event.target;
-        if (name == "email2") {
-            setEmail2(value);
-        } else {
+        if (name !== "email2") {
             setBuyer({...buyer, [name]: value});
-        }
+        };
+
+        // Actualizo lista de campos editados
+        setEdited({...edited, [name]: true});
+
+        // Valido el campo
+        validate(name, value)
     }
     
-    const validate = () => {
-        // valida el formulario
-        if (buyer.email !== email2) {
-            return false
+    const validate = (name, value) => {
+        // Valida el formulario
+        switch (name) {
+            case 'firstname':
+                setvalidatedField({...validatedField, [name]: !!value});
+                break;
+            case 'lastname':
+                setvalidatedField({...validatedField, [name]: !!value});
+                break;
+            case 'email':
+                setvalidatedField({...validatedField, [name]: !!value});
+                break;
+            case 'phone':
+                setvalidatedField({...validatedField, [name]: !!value});
+                break;
+            case 'country':
+                setvalidatedField({...validatedField, [name]: !!value});
+                break;
+            case 'email2':
+                setvalidatedField({...validatedField, [name]: buyer.email === value});
+                break;
+            default:
+                console.log(`Campo desconocido: ${name}`);
         }
-        return true
     }
 
-    const validated = useMemo(validate, [buyer, email2]);
+    const validated = useMemo(
+        () => Object.values(validatedField).reduce(
+            (previousValue, currentValue) => previousValue && currentValue,
+            true
+        ),
+        [validatedField]
+    );
 
     // Accion que se ejecuta al hacer click en el boton finalizar compra
     const handleSubmit = (event) => {
@@ -67,7 +114,7 @@ export default function CheckOut(){
         })
     }
 
-    //batch update de productos una vez generada la orden
+    // Batch update de productos una vez generada la orden
     const updateStock = () => {
         const batch = writeBatch(db); //inicio nuevo batch
         // obtener las referencias por cada item del carrito
@@ -91,9 +138,9 @@ export default function CheckOut(){
                         onChange={handleChange} 
                         type="name" 
                         placeholder="Enter first name"
+                        isInvalid={edited.firstname && !validatedField.firstname}
                     />
                 </Form.Group>
-
                 <Form.Group as={Col} controlId="formGridSurname">
                     <Form.Label>Last Name</Form.Label>
                     <Form.Control
@@ -101,6 +148,7 @@ export default function CheckOut(){
                         onChange={handleChange}
                         type="name" 
                         placeholder="Enter last name"
+                        isInvalid={edited.lastname && !validatedField.lastname}
                     />
                 </Form.Group>
             </Row>
@@ -113,6 +161,7 @@ export default function CheckOut(){
                         onChange={handleChange} 
                         type="email" 
                         placeholder="Enter email"
+                        isInvalid={edited.email && !validatedField.email}
                     />
                 </Form.Group>
                 <Form.Group as={Col} controlId="formGridEmail">
@@ -122,7 +171,7 @@ export default function CheckOut(){
                         onChange={handleChange}
                         type="email"
                         placeholder="Enter email"
-                        isInvalid={!validated}
+                        isInvalid={edited.email2 && !validatedField.email2}
                     />
                 </Form.Group>
             </Row>
@@ -135,9 +184,9 @@ export default function CheckOut(){
                         onChange={handleChange} 
                         type="phone" 
                         placeholder="Enter phone"
+                        isInvalid={edited.phone && !validatedField.phone}
                     />
             </Form.Group>
-
             <Form.Group as={Col} controlId="formGridCountry">
                 <Form.Label>Country</Form.Label>
                 <Form.Control
@@ -145,6 +194,7 @@ export default function CheckOut(){
                     onChange={handleChange}
                     type="text"
                     placeholder="Enter country"
+                    isInvalid={edited.country && !validatedField.country}
                 />
             </Form.Group>
             </Row>

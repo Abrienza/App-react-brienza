@@ -18,7 +18,9 @@ Este es un proyecto personal enfocado en el aprendizaje de React JS.
   - **Google Fonts**
     - Se utilizó para tomar una tipografía confiable y funsional. El servicio gratuito de Google ofrece un repositorio de fuentes ya probadas y confiables en su uso y legibilidad.
   - **FontAwesome**
-    - Es un framework que fue utilizado para utilizar un icono de carrito de forma agil y simple, como gráficos vectorial convertido en fuente. 
+    - Es un framework que fue utilizado para utilizar un icono de carrito de forma agil y simple, como gráficos vectorial convertido en fuente.
+  - **Firebase**
+    - Se trata de una solución creada por Google y se utilizó para hacer más sencilla la creación tanto de la aplicaciones y su desarrollo, haciendo que el trabajo sea más rápido, pero sin renunciar a la calidad.
 
 ## Requisitos
 
