@@ -49,28 +49,22 @@ export default function CheckOut(){
         // evita que el formulario haga una redireccion
         event.preventDefault();
 
-        if (!validate()) {
-            console.log('fallo la validacion')
-        } else {
-
-            // crea la orden
-            const order = {
-                buyer,
-                products: cart,
-                date: new Date(),
-                totalProducts,
-                totalPrice,
-            }
-            
-            const ordersCollection = collection(db, "orders");        
-            
-            addDoc(ordersCollection, order).then(({ id }) => {
-                clearAll()
-                updateStock()
-                navigate(`/order/${id}`);
-            })
+        // crea la orden
+        const order = {
+            buyer,
+            products: cart,
+            date: new Date(),
+            totalProducts,
+            totalPrice,
         }
-
+        
+        const ordersCollection = collection(db, "orders");        
+        
+        addDoc(ordersCollection, order).then(({ id }) => {
+            clearAll()
+            updateStock()
+            navigate(`/order/${id}`);
+        })
     }
 
     //batch update de productos una vez generada la orden
@@ -92,43 +86,79 @@ export default function CheckOut(){
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridName">
                     <Form.Label>First Name</Form.Label>
-                    <Form.Control name="firstname" onChange={handleChange} type="name" placeholder="Enter first name" />
+                    <Form.Control
+                        name="firstname" 
+                        onChange={handleChange} 
+                        type="name" 
+                        placeholder="Enter first name"
+                    />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridSurname">
                     <Form.Label>Last Name</Form.Label>
-                    <Form.Control name="lastname" onChange={handleChange} type="name" placeholder="Enter last name"/>
+                    <Form.Control
+                        name="lastname"
+                        onChange={handleChange}
+                        type="name" 
+                        placeholder="Enter last name"
+                    />
                 </Form.Group>
             </Row>
 
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control name="email" onChange={handleChange} type="email" placeholder="Enter email" />
+                    <Form.Control
+                        name="email"
+                        onChange={handleChange} 
+                        type="email" 
+                        placeholder="Enter email"
+                    />
                 </Form.Group>
                 <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label>Email confirmation</Form.Label>
-                    <Form.Control name="email2" onChange={handleChange} type="email"
-                        placeholder="Enter email" isInvalid={!validated}/>
+                    <Form.Control
+                        name="email2"
+                        onChange={handleChange}
+                        type="email"
+                        placeholder="Enter email"
+                        isInvalid={!validated}
+                    />
                 </Form.Group>
             </Row>
 
             <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridPhone">
                     <Form.Label>Phone</Form.Label>
-                    <Form.Control name="phone" onChange={handleChange} type="phone" placeholder="Enter phone" />
+                    <Form.Control
+                        name="phone"
+                        onChange={handleChange} 
+                        type="phone" 
+                        placeholder="Enter phone"
+                    />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCountry">
                 <Form.Label>Country</Form.Label>
-                <Form.Control name="country" onChange={handleChange} type="text" placeholder="Enter country"/>
+                <Form.Control
+                    name="country"
+                    onChange={handleChange}
+                    type="text"
+                    placeholder="Enter country"
+                />
             </Form.Group>
             </Row>
 
-            <Button type="submit" disabled={!validated} className= "buttonGeneral" variant="secondary">Finalizar Compra</Button>
+            <Button
+                type="submit" 
+                disabled={!validated} 
+                className="buttonGeneral" 
+                variant="secondary">Finalizar Compra</Button>
             
             <Link to="/cart">
-                <Button variant="secondary" className="buttonGeneral">Volver al carrito</Button>
+                <Button 
+                    variant="secondary" 
+                    className="buttonGeneral">Volver al carrito</Button>
             </Link>
 
         </Form>
