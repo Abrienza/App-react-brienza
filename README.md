@@ -10,7 +10,7 @@ Este es un proyecto personal enfocado en el aprendizaje de React JS.
 
 ![Enlace a  gif con la animación de la app doc/brienza-app-final.gif](doc/brienza-app.gif)
 
-## Librerías, framework y recursos utilizados:
+## Librerías, framework y recursos implementados:
 
   - **React Bootstrap**
     Se utilizó para facilitar la estructura e implementar los componentes de Bootstrap, ya que el formato no fue el core de la aplicación si no las funcionalidades con React.
