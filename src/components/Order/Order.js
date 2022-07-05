@@ -3,6 +3,7 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { Button, Card, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { INITIAL, LOADING, ORDER_READY, NOT_FOUND, ERROR } from "../../constants/constants";
+import EmptyState from "../EmptyState/EmptyState";
 
 export default function Order({orderId}){
 
