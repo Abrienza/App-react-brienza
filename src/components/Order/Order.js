@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { Button, Card, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-const INITIAL = 0;  // No se cargo nada
-const LOADING = 1;  // Se esta consultando la base de datos
-const ORDER_READY = 2;  // La orden esta lista para ser mostrada
-const NOT_FOUND = 3;  // La orden no fue encontrada 
-const ERROR = 4;  // Se encontro un error 
+import { INITIAL, LOADING, ORDER_READY, NOT_FOUND, ERROR } from "../../constants/constants";
 
 export default function Order({orderId}){
 
@@ -39,7 +34,7 @@ export default function Order({orderId}){
         <>
         {
             state == INITIAL || state == LOADING ? <Spinner animation="border" variant="danger" /> : 
-            state == NOT_FOUND ? <h2>Orden no encontrada</h2> :
+            state == NOT_FOUND ? <EmptyState/> :
             <>
                 <Card className="text-center">
                     <Card.Body>

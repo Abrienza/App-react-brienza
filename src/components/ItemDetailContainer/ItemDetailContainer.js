@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { getFirestore, getDoc, doc } from "firebase/firestore";
+import EmptyState from "../EmptyState/EmptyState";
 
 export default function ItemDetailContainer({productId}) {
 
@@ -21,7 +22,7 @@ export default function ItemDetailContainer({productId}) {
         // getDoc retorna un unico valor (por eso no hay docs en el medio)
         getDoc(productQuery).then(response => {
             if (!response.exists()) {
-                console.log("El producto no existe");  // TODO: Mostrar al usuario
+                console.log("El producto no existe");
             } else {
                 setProduct({ id: response.id, ...response.data() });
             }
@@ -40,7 +41,7 @@ export default function ItemDetailContainer({productId}) {
             <main>        
                 {charge ? <Spinner
                     animation="border"
-                    variant="danger" /> : <ItemDetail product={product} />}
+                    variant="danger" /> : (product.length === 0) ? <EmptyState/> : <ItemDetail product={product} />}
             </main>
         </Container>
         </>

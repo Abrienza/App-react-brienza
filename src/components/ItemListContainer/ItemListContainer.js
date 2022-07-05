@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import ItemList from "../ItemList/ItemList";
 import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
+import EmptyState from "../EmptyState/EmptyState";
 
 export default function ItemListContainer({ categoryId }) {
 
@@ -43,9 +44,15 @@ export default function ItemListContainer({ categoryId }) {
     return (
         <Container className="itemlist-container">
             <main className="main">
-                {charge ? <Spinner
-                    animation="border"
-                    variant="danger" /> : <ItemList products={products} />}
+                {
+                    charge ? 
+                        <Spinner
+                            animation="border"
+                            variant="danger" /> :     
+                    products.length === 0 ? 
+                        <EmptyState/> : 
+                        <ItemList products={products} />
+                }
             </main>
         </Container>
 
